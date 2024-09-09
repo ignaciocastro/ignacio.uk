@@ -1,79 +1,33 @@
 backend:
   name: github
-  repo: ignaciocastro/ignacio.uk
+  repo: ignaciocastro/ignacio.uk # Your GitHub repository
   branch: main # Branch to update (optional; defaults to master)
-  base_url: https://sveltia-cms-auth.ignacio.workers.dev/
+  base_url: https://sveltia-cms-auth.ignacio.workers.dev/ # Custom authentication URL
 
 media_folder: "assets/img" # Folder where images will be uploaded
 public_folder: "/img" # Folder where images will be accessed
 
 i18n:
-  structure: multiple_folders
-  locales: 
-    - en
-    - es
+  structure: multiple_files # Multiple language versions of the same content in the same folder
+  default_language: en
+  locales:
+    - { code: en, label: "English" }
+    - { code: es, label: "Español" }
 
 collections:
   - name: "posts"
     label: "Posts"
     folder: "content/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}/index"
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-
-  - name: "english-posts"
-    label: "English Posts"
-    folder: "content/posts"
-    create: true
-    slug: "{{slug}}/index.en"
-    extension: "md"
-    filter:
-      field: "lang"
-      value: "en"
-    fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-      - label: "Language"
-        name: "lang"
-        widget: "hidden"
-        default: "en"
-
-  - name: "spanish-posts"
-    label: "Spanish Posts"
-    folder: "content/posts"
-    create: true
-    slug: "{{slug}}/index.es"
-    extension: "md"
-    filter:
-      field: "lang"
-      value: "es"
-    fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-      - label: "Language"
-        name: "lang"
-        widget: "hidden"
-        default: "es"
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Language", name: "language", widget: "select", options: ["en", "es"], default: "en" }
+    i18n:
+      structure: multiple_files # Using the same folder with language codes in filenames
+      locales:
+        - { code: en, label: "English" }
+        - { code: es, label: "Español" }
+    path: "{{slug}}/index.{{language}}.md" # Post file path based on language
