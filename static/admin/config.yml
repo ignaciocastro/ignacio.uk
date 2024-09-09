@@ -7,6 +7,10 @@ backend:
 media_folder: "assets/img" # Folder where images will be uploaded
 public_folder: "/img" # Folder where images will be accessed
 
+i18n:
+  structure: multiple_folders
+  locales: [en, es]
+
 collections:
   - name: "post"
     label: "Post"
@@ -15,7 +19,7 @@ collections:
     slug: "{{slug}}"
     media_folder: ''
     public_folder: ''
-    path: "{{slug}}/index.{{language}}.md"
+    path: "{{slug}}/index.{{locale}}.md"
     i18n: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -23,11 +27,3 @@ collections:
       - {label: "Featured Image", name: "image", widget: "image", required: false}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
-    i18n:
-      structure: multiple_folders
-      locales: [en, es]
-      default_locale: en
-
-i18n:
-  structure: multiple_folders
-  locales: [en, es]
