@@ -12,8 +12,8 @@ collections:
     label: "Posts"
     folder: "content/posts"
     create: true
-    slug: "{{year}}-{{{slug}}"
-    path: "{{year}}-{{{slug}}/index.en"
+    slug: "{{slug}}"
+    path: "{{slug}}/index.{{locale}}"
     i18n: true
     fields:
       - {label: "Title", name: "title", widget: "string"}

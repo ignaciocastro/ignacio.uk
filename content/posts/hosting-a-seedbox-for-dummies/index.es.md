@@ -384,7 +384,7 @@ sudo systemctl enable unattended-upgrades
 sudo systemctl start unattended-upgrades
 ```
 
-## Parte 5: ¡Mierda, ¿podemos instalar Swizzin ya?
+## Parte 5: ¿Ya podemos instalar Swizzin?
 ### Instalando Swizzin
 
 Habilita el acceso a los puertos 80 (HTTP) y 443 (HTTPS):

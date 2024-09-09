@@ -11,9 +11,9 @@
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hosting a Seedbox for Dummies</title>
-      <link>http://localhost:1313/posts/2024-hosting-a-seedbox-for-dummies/</link>
+      <link>http://localhost:1313/posts/hosting-a-seedbox-for-dummies/</link>
       <pubDate>Mon, 09 Sep 2024 01:24:56 -0300</pubDate>
-      <guid>http://localhost:1313/posts/2024-hosting-a-seedbox-for-dummies/</guid>
+      <guid>http://localhost:1313/posts/hosting-a-seedbox-for-dummies/</guid>
       <description>Setting up a private seedbox from the beggining</description>
     </item>
   </channel>
