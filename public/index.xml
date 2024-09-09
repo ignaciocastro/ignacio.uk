@@ -16,5 +16,12 @@
       <guid>http://localhost:1313/posts/2024-hosting-a-seedbox-for-dummies/</guid>
       <description>Setting up a private seedbox from the beggining</description>
     </item>
+    <item>
+      <title>Privacy Policy</title>
+      <link>http://localhost:1313/privacy/</link>
+      <pubDate>Mon, 09 Sep 2024 01:24:56 -0300</pubDate>
+      <guid>http://localhost:1313/privacy/</guid>
+      <description>Privacy Policy</description>
+    </item>
   </channel>
 </rss>
