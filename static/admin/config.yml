@@ -7,22 +7,73 @@ backend:
 media_folder: "assets/img" # Folder where images will be uploaded
 public_folder: "/img" # Folder where images will be accessed
 
+i18n:
+  structure: multiple_folders
+  locales: 
+    - en
+    - es
+
 collections:
   - name: "posts"
     label: "Posts"
     folder: "content/posts"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Draft", name: "draft", widget: "boolean", default: false}
-      - {label: "Show Summary", name: "showSummary", widget: "boolean", default: true}
-      - {label: "Summary", name: "summary", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
-    i18n: true
-    nested:
-      depth: 1
-      summary: '{{title}}'
-    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
-    format: 'toml-frontmatter'
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "english-posts"
+    label: "English Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}/index.en"
+    extension: "md"
+    filter:
+      field: "lang"
+      value: "en"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+      - label: "Language"
+        name: "lang"
+        widget: "hidden"
+        default: "en"
+
+  - name: "spanish-posts"
+    label: "Spanish Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}/index.es"
+    extension: "md"
+    filter:
+      field: "lang"
+      value: "es"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+      - label: "Language"
+        name: "lang"
+        widget: "hidden"
+        default: "es"
