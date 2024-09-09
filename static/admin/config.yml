@@ -5,18 +5,32 @@ backend:
   site_domain: https://ignacio.uk
   base_url: https://ignacio.uk
   auth_endpoint: /api/auth
-media_folder: static/img
+media_folder: assets/img
 public_folder: /img
 collections:
-  - name: 'blog'
-    label: 'Blog'
-    folder: 'content/posts'
+  - name: "post"
+    label: "Post"
+    folder: "content/posts"
     create: true
-    slug: '{{slug}}'
+    slug: "{{year}}-{{slug}}"
+    path: "{{slug}}/index.{{language}}"
+    media_folder: ''
+    public_folder: ''
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Language", name: "language", widget: "select", options: ["en", "es"]}
+      - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Categories", name: "categories", widget: "list", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
     editor:
       preview: false
-    fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+    i18n:
+      structure: multiple_files
+      locales: [en, es]
+
+i18n:
+  structure: multiple_files
+  locales: [en, es]
