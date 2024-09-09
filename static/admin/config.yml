@@ -5,29 +5,24 @@ backend:
   base_url: https://sveltia-cms-auth.ignacio.workers.dev/
 media_folder: assets/img
 public_folder: /img
+
 collections:
-  - name: "post"
-    label: "Post"
+  - name: "blog"
+    label: "Blog Post"
     folder: "content/posts"
     create: true
     slug: "{{year}}-{{slug}}"
-    path: "{{year-slug}}{{slug}}/index.{{languages}}"
+    path: "{{year}}-{{slug}}/index.{{locale}}"
     media_folder: ''
     public_folder: ''
+    i18n: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "image", widget: "image", required: false}
-      - {label: "Categories", name: "categories", widget: "list", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
-    editor:
-      preview: true
+      - {label: "Tags", name: "tags", widget: "list", required: false}
     i18n:
       structure: multiple_files
-      locales: [en, es]
-
-i18n:
-  structure: multiple_files
-  locales: [en, es]
+      locales: ["en", "es"]
