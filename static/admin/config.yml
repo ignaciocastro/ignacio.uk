@@ -19,7 +19,7 @@ collections:
     slug: "{{slug}}"
     media_folder: ''
     public_folder: ''
-    path: "{{slug}}/index.{{i18n}}.md"
+    path: "{{slug}}/index.{{locale}}.md"
     i18n: true
     format: "toml-frontmatter"
     fields:
