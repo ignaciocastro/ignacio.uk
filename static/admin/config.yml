@@ -16,7 +16,9 @@ collections:
     path: "{{year}}-{{slug}}/index.{{locale}}"
     media_folder: ''
     public_folder: ''
-    i18n: true
+    i18n:
+      structure: multiple_files
+      locales: ["en", "es"]
     fields:
       - {label: "Language", name: "locale", widget: "select", options: ["en", "es"]}
       - {label: "Title", name: "title", widget: "string"}
@@ -25,6 +27,3 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list", required: false}
-    i18n:
-      structure: multiple_files
-      locales: ["en", "es"]
