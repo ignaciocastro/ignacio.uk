@@ -8,10 +8,8 @@ media_folder: "assets/img" # Folder where images will be uploaded
 public_folder: "/img" # Folder where images will be accessed
 
 i18n:
-  structure: multiple_files
-  locales: [es, en]
+  locales: [en, es]
   default_locale: en
-  save_all_locales: true
 
 collections:
   - name: "post"
@@ -19,14 +17,19 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
-    media_folder: ''
-    public_folder: ''
-    path: "{{slug}}/index.{{locale}}"
-    extension: "md"
     i18n: true
-    format: "toml-frontmatter"
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "image", widget: "image", required: false}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
+    nested:
+      depth: 1
+      summary: "{{title}}"
+    filter:
+      field: language
+      value: "{{locale}}"
+    file: "index.{{locale}}.md"
+    editor:
+      preview: false
