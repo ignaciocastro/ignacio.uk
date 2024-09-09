@@ -10,10 +10,10 @@ public_folder: /img
 collections:
   - name: "blog"
     label: "Blog Post"
-    folder: "content/posts"
+    folder: "/posts"
     create: true
     slug: "{{year}}-{{slug}}"
-    path: "{{year}}-{{slug}}/index.{{locale}}"
+    path: "{{slug}}/index.{{locale}}"
     media_folder: ''
     public_folder: ''
     i18n:
