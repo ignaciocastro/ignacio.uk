@@ -13,13 +13,12 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{year}}-{{slug}}"
-    path: "{{slug}}/index.{{language}}"
+    path: "{{year}}-{{slug}}/index.{{locale}}"
     media_folder: ''
     public_folder: ''
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Language", name: "language", widget: "select", options: ["en", "es"]}
       - {label: "Draft", name: "draft", widget: "boolean", default: false}
       - {label: "Featured Image", name: "image", widget: "image", required: false}
       - {label: "Categories", name: "categories", widget: "list", required: false}
