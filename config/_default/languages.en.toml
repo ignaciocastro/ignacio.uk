@@ -14,7 +14,7 @@ copyright = "© 2024, under CC BY-NC-SA 4.0"
 
 [params.author]
   name = "ignacio"
-  image = "img/author.jpg"
+  image = "img/author.webp"
   headline = "22, Chile :pushpin: I write sometimes, seldom making sense"
   bio = "I write sometimes, seldom making sense"
   links = [
