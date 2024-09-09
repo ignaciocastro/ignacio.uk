@@ -12,7 +12,7 @@ Con la ola de gente queriendo configurar sus propios seedboxes sin ser molestado
 
 Usar el simbolo del sistema es antiguo, aburrido y feo. Powershell no es muy distinto, hora de actualizar. Para esto, usaremos Windows Terminal. Puedes descargarlo gratis desde la [Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701) or [instalarlo con un método alternativo](https://github.com/microsoft/terminal#installing-and-running-windows-terminal). Cmder, Tabby son buenas alternativas, pero nos iremos por la opción más fácil.
 
-#### ¿Por que no usar PuTTY, KiTTY, mRemoteNG, Bitvise, o *insertar cliente SSH aquí*?
+#### ¿Por que no usar PuTTY, KiTTY o *insertar cliente SSH aquí*?
 Si estas siguiendo esta guia, se tiene en consideración que no tienes conocimientos profundos en configurar un servidor de Linux. Para aprender, tendrás que aprender a trabajar en una terminal completa en vez de usar un programa que haga la primera parte por ti.
 
 ### Paso 2: Instalando Git for Windows

@@ -12,7 +12,7 @@ With the influx of people wanting to set up their own seedboxes without being bo
 
 Using Command Prompt is outdated, boring and ugly. Powershell is no better. Time to update. For this, Windows Terminal will be installed and used. You can either get it for free on the [Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701) or [install it with an alternative method](https://github.com/microsoft/terminal#installing-and-running-windows-terminal).  Cmder, Tabby are good alternatives, but we're going with the easiest option.
 
-#### Why not PuTTY, KiTTY, mRemoteNG, Bitvise, or *insert SSH client here*?
+#### Why not PuTTY, KiTTY or *insert SSH client here*?
 If you're reading this guide I'm having in consideration that you don't have extensive knowledge in setting up a Linux server. To learn this, you need to learn to work in a full fledged terminal, instead of having a program do the first part for you.
 
 ### Step 2: Installing Git for Windows

@@ -138,7 +138,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3229"
+    "wordCount": "3227"
   }
   </script>
     
@@ -399,7 +399,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-09-09 01:24:56 -0300 -03">septiembre 9, 2024</time><span class="px-2 text-primary-500">&middot;</span><span>3229 palabras</span><span class="px-2 text-primary-500">&middot;</span><span title="Tiempo de lectura">16 mins</span>
+      <time datetime="2024-09-09 01:24:56 -0300 -03">septiembre 9, 2024</time><span class="px-2 text-primary-500">&middot;</span><span>3227 palabras</span><span class="px-2 text-primary-500">&middot;</span><span title="Tiempo de lectura">16 mins</span>
     
 
     
@@ -431,7 +431,7 @@
       <ul>
         <li><a href="#paso-1-instalando-un-buen-terminal">Paso 1: Instalando un buen terminal</a>
           <ul>
-            <li><a href="#por-que-no-usar-putty-kitty-mremoteng-bitvise-o-insertar-cliente-ssh-aquí">¿Por que no usar PuTTY, KiTTY, mRemoteNG, Bitvise, o <em>insertar cliente SSH aquí</em>?</a></li>
+            <li><a href="#por-que-no-usar-putty-kitty-o-insertar-cliente-ssh-aquí">¿Por que no usar PuTTY, KiTTY o <em>insertar cliente SSH aquí</em>?</a></li>
           </ul>
         </li>
         <li><a href="#paso-2-instalando-git-for-windows">Paso 2: Instalando Git for Windows</a></li>
@@ -486,7 +486,7 @@
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>Con la ola de gente queriendo configurar sus propios seedboxes sin ser molestados por sus compañias de internet por descargar torrents, entra a la mente mantener un servidor privado para descargar. Esta guia tocará los pasos básicos, empezando en como usar la terminal en Windows, escogiendo un proveedor de VPS e instalando (y configurando) Swizzin.</p>
 <h2 id="parte-1-configurando-windows" class="relative group">Parte 1: Configurando Windows <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#parte-1-configurando-windows" aria-label="Ancla">#</a></span></h2><h3 id="paso-1-instalando-un-buen-terminal" class="relative group">Paso 1: Instalando un buen terminal <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#paso-1-instalando-un-buen-terminal" aria-label="Ancla">#</a></span></h3><p>Usar el simbolo del sistema es antiguo, aburrido y feo. Powershell no es muy distinto, hora de actualizar. Para esto, usaremos Windows Terminal. Puedes descargarlo gratis desde la <a href="https://apps.microsoft.com/detail/9n0dx20hk701" target="_blank" rel="noreferrer">Microsoft Store</a> or <a href="https://github.com/microsoft/terminal#installing-and-running-windows-terminal" target="_blank" rel="noreferrer">instalarlo con un método alternativo</a>. Cmder, Tabby son buenas alternativas, pero nos iremos por la opción más fácil.</p>
-<h4 id="por-que-no-usar-putty-kitty-mremoteng-bitvise-o-insertar-cliente-ssh-aquí" class="relative group">¿Por que no usar PuTTY, KiTTY, mRemoteNG, Bitvise, o <em>insertar cliente SSH aquí</em>? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#por-que-no-usar-putty-kitty-mremoteng-bitvise-o-insertar-cliente-ssh-aqu%c3%ad" aria-label="Ancla">#</a></span></h4><p>Si estas siguiendo esta guia, se tiene en consideración que no tienes conocimientos profundos en configurar un servidor de Linux. Para aprender, tendrás que aprender a trabajar en una terminal completa en vez de usar un programa que haga la primera parte por ti.</p>
+<h4 id="por-que-no-usar-putty-kitty-o-insertar-cliente-ssh-aquí" class="relative group">¿Por que no usar PuTTY, KiTTY o <em>insertar cliente SSH aquí</em>? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#por-que-no-usar-putty-kitty-o-insertar-cliente-ssh-aqu%c3%ad" aria-label="Ancla">#</a></span></h4><p>Si estas siguiendo esta guia, se tiene en consideración que no tienes conocimientos profundos en configurar un servidor de Linux. Para aprender, tendrás que aprender a trabajar en una terminal completa en vez de usar un programa que haga la primera parte por ti.</p>
 <h3 id="paso-2-instalando-git-for-windows" class="relative group">Paso 2: Instalando Git for Windows <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#paso-2-instalando-git-for-windows" aria-label="Ancla">#</a></span></h3><p>cmd apesta, Powershell apesta, Cygwin está estancado en la nada. Instalaremos Git for Windows, que incluye la emulación de BASH integrada, para ayudarte a familiarizarte antes con el bash de Linux.</p>
 <p>Descarga la versión 64 bits de Git for Windows <a href="https://git-scm.com/download/win" target="_blank" rel="noreferrer">aquí</a>. Al instalar, recuerda marcar la opción &ldquo;(NEW!) Add a Git Bash Profile to Windows Terminal&rdquo; en la parte <em>Select Components</em>. Para facilitarte la vida, en <em>Choosing the default editor used by Git</em>, desplázate hacia arriba en la lista y selecciona &ldquo;nano&rdquo;. No es necesario cambiar nada más en el proceso de instalación.</p>
 <p>Abre Windows Terminal y deberías ver una opción <em>Git</em> cuando hagas clic en la flecha junto al botón de nueva pestaña. <strong>Usarás esta opción a partir de este punto hasta el final del tutorial.</strong> También puedes abrir la configuración (<code>CTRL + ,</code> o flecha hacia abajo &gt; Configuración) y seleccionar <em>Git</em> como perfil predeterminado. Recuerda hacer clic en <strong>Guardar</strong> al final. Cierra tu terminal y abre otra, ya estás listo.</p>

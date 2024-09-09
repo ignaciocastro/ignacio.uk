@@ -138,7 +138,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "3188"
+    "wordCount": "3186"
   }
   </script>
     
@@ -399,7 +399,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2024-09-09 01:24:56 -0300 -03">September 9, 2024</time><span class="px-2 text-primary-500">&middot;</span><span>3188 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span>
+      <time datetime="2024-09-09 01:24:56 -0300 -03">September 9, 2024</time><span class="px-2 text-primary-500">&middot;</span><span>3186 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">15 mins</span>
     
 
     
@@ -431,7 +431,7 @@
       <ul>
         <li><a href="#step-1-installing-a-good-terminal">Step 1: Installing a good terminal</a>
           <ul>
-            <li><a href="#why-not-putty-kitty-mremoteng-bitvise-or-insert-ssh-client-here">Why not PuTTY, KiTTY, mRemoteNG, Bitvise, or <em>insert SSH client here</em>?</a></li>
+            <li><a href="#why-not-putty-kitty-or-insert-ssh-client-here">Why not PuTTY, KiTTY or <em>insert SSH client here</em>?</a></li>
           </ul>
         </li>
         <li><a href="#step-2-installing-git-for-windows">Step 2: Installing Git for Windows</a></li>
@@ -486,7 +486,7 @@
       <div class="min-h-0 min-w-0 max-w-prose grow">
         <p>With the influx of people wanting to set up their own seedboxes without being bothered by their ISPs, there&rsquo;s a growing need for them to consider setting their servers for themselves. This guide will tackle the basics, starting on how to use the terminal on Windows, choosing a hoster and installing (and learning) Swizzin.</p>
 <h2 id="part-1-setting-up-windows" class="relative group">Part 1: Setting up Windows <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#part-1-setting-up-windows" aria-label="Anchor">#</a></span></h2><h3 id="step-1-installing-a-good-terminal" class="relative group">Step 1: Installing a good terminal <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-1-installing-a-good-terminal" aria-label="Anchor">#</a></span></h3><p>Using Command Prompt is outdated, boring and ugly. Powershell is no better. Time to update. For this, Windows Terminal will be installed and used. You can either get it for free on the <a href="https://apps.microsoft.com/detail/9n0dx20hk701" target="_blank" rel="noreferrer">Microsoft Store</a> or <a href="https://github.com/microsoft/terminal#installing-and-running-windows-terminal" target="_blank" rel="noreferrer">install it with an alternative method</a>.  Cmder, Tabby are good alternatives, but we&rsquo;re going with the easiest option.</p>
-<h4 id="why-not-putty-kitty-mremoteng-bitvise-or-insert-ssh-client-here" class="relative group">Why not PuTTY, KiTTY, mRemoteNG, Bitvise, or <em>insert SSH client here</em>? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-not-putty-kitty-mremoteng-bitvise-or-insert-ssh-client-here" aria-label="Anchor">#</a></span></h4><p>If you&rsquo;re reading this guide I&rsquo;m having in consideration that you don&rsquo;t have extensive knowledge in setting up a Linux server. To learn this, you need to learn to work in a full fledged terminal, instead of having a program do the first part for you.</p>
+<h4 id="why-not-putty-kitty-or-insert-ssh-client-here" class="relative group">Why not PuTTY, KiTTY or <em>insert SSH client here</em>? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#why-not-putty-kitty-or-insert-ssh-client-here" aria-label="Anchor">#</a></span></h4><p>If you&rsquo;re reading this guide I&rsquo;m having in consideration that you don&rsquo;t have extensive knowledge in setting up a Linux server. To learn this, you need to learn to work in a full fledged terminal, instead of having a program do the first part for you.</p>
 <h3 id="step-2-installing-git-for-windows" class="relative group">Step 2: Installing Git for Windows <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#step-2-installing-git-for-windows" aria-label="Anchor">#</a></span></h3><p>cmd sucks, Powershell sucks, Cygwin is stagnant. We&rsquo;ll install Git for Windows, which includes BASH emulation built in, to help familiarize yourself sooner with Linux&rsquo;s bash.</p>
 <p>Get the 64-bit version of Git for Windows <a href="https://git-scm.com/download/win" target="_blank" rel="noreferrer">here</a>. When installing, remember to check the &ldquo;(NEW!) Add a Git Bash Profile to Windows Terminal&rdquo; option in the <em>Select Components</em> part. To make your life easier, in <em>Choosing the default editor used by Git</em>, scroll up the list and select &ldquo;nano&rdquo;. No need to change anything else in the installation process.</p>
 <p>Open Windows Terminal and you should see a <em>Git</em> option when you click the arrow next to the new tab button. <strong>You will be using this option starting from this point until the end of the tutorial.</strong> You can also open settings (<code>CTRL + ,</code> or Downwards arrow &gt; Settings) and select <em>Git</em> as default profile. Remember to click <strong>Save</strong> at the end. Close your terminal and open another, you are set.</p>
