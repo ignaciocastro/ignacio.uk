@@ -13,7 +13,7 @@ collections:
     folder: "/posts"
     create: true
     slug: "{{year}}-{{slug}}"
-    path: "{{slug}}/index.{{locale}}"
+    path: "{{year}}-{{slug}}/index.{{locale}}"
     media_folder: ''
     public_folder: ''
     i18n:
