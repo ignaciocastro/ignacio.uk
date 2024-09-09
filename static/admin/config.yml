@@ -3,6 +3,7 @@ backend:
   repo: ignaciocastro/ignacio.uk
   branch: main # Branch to update (optional; defaults to master)
   base_url: https://sveltia-cms-auth.ignacio.workers.dev/
+
 media_folder: assets/img
 public_folder: /img
 
@@ -17,6 +18,7 @@ collections:
     public_folder: ''
     i18n: true
     fields:
+      - {label: "Language", name: "locale", widget: "select", options: ["en", "es"]}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "image", widget: "image", required: false}
