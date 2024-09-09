@@ -4,26 +4,47 @@ backend:
   branch: main # Branch to update (optional; defaults to master)
   base_url: https://sveltia-cms-auth.ignacio.workers.dev/
 
-media_folder: assets/img
-public_folder: /img
+media_folder: "assets/img" # Folder where images will be uploaded
+public_folder: "/img" # Folder where images will be accessed
 
 collections:
-  - name: "blog"
-    label: "Blog Post"
+  - name: "posts"
+    label: "Posts"
     folder: "content/posts"
     create: true
-    slug: "{{year}}-{{slug}}"
+    slug: "{{year}}-{{slug}}/index"
     path: "{{year}}-{{slug}}/index.{{locale}}"
-    media_folder: ''
-    public_folder: ''
-    i18n:
-      structure: multiple_files
-      locales: ["en", "es"]
+    extension: "md"
+    format: "frontmatter"
     fields:
-      - {label: "Language", name: "locale", widget: "select", options: ["en", "es"]}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "image", widget: "image", required: false}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Language"
+        name: "locale"
+        widget: "select"
+        options:
+          - { label: "English", value: "en" }
+          - { label: "Spanish", value: "es" }
+        default: "en"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+        required: false
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+publish_mode: editorial_workflow
