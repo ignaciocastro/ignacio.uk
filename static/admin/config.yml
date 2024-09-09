@@ -13,8 +13,16 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
-    path: "{{slug}}/index.{{locale}}"
-    i18n: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "Show Summary", name: "showSummary", widget: "boolean", default: true}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+    i18n: true
+    nested:
+      depth: 1
+      summary: '{{title}}'
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    format: 'toml-frontmatter'
