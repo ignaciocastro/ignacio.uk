@@ -7,24 +7,14 @@ backend:
 media_folder: "assets/img" # Folder where images will be uploaded
 public_folder: "/img" # Folder where images will be accessed
 
-i18n:
-  structure: multiple_files
-  locales: [en, es]
-  default_locale: en
-
 collections:
   - name: "posts"
     label: "Posts"
     folder: "content/posts"
     create: true
-    slug: "{{year}}-{{slug}}"
-    path: "{{slug}}/index.{{locale}}"
+    slug: "{{year}}-{{{slug}}"
+    path: "{{year}}-{{{slug}}/index.en"
     i18n: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Categories", name: "categories", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}

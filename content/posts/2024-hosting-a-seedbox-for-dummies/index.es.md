@@ -6,119 +6,120 @@ showSummary = true
 summary = 'Configurando un seedbox privado, desde cero'
 +++
 
-Con la ola de gente queriendo condiguWith the influx of people wanting to set up their own seedboxes without being bothered by their ISPs, there's a growing need for them to consider setting their servers for themselves. This guide will tackle the basics, starting on how to use the terminal on Windows, choosing a hoster and installing (and learning) Swizzin.
-## Part 1: Setting up Windows
-### Step 1: Installing a good terminal
+Con la ola de gente queriendo configurar sus propios seedboxes sin ser molestados por sus compañias de internet por descargar torrents, entra a la mente mantener un servidor privado para descargar. Esta guia tocará los pasos básicos, empezando en como usar la terminal en Windows, escogiendo un proveedor de VPS e instalando (y configurando) Swizzin.
+## Parte 1: Configurando Windows
+### Paso 1: Instalando un buen terminal
 
-Using Command Prompt is outdated, boring and ugly. Powershell is no better. Time to update. For this, Windows Terminal will be installed and used. You can either get it for free on the [Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701) or [install it with an alternative method](https://github.com/microsoft/terminal#installing-and-running-windows-terminal).  Cmder, Tabby are good alternatives, but we're going with the easiest option.
+Usar el simbolo del sistema es antiguo, aburrido y feo. Powershell no es muy distinto, hora de actualizar. Para esto, usaremos Windows Terminal. Puedes descargarlo gratis desde la [Microsoft Store](https://apps.microsoft.com/detail/9n0dx20hk701) or [instalarlo con un método alternativo](https://github.com/microsoft/terminal#installing-and-running-windows-terminal). Cmder, Tabby son buenas alternativas, pero nos iremos por la opción más fácil.
 
-#### Why not PuTTY, KiTTY, mRemoteNG, Bitvise, or *insert SSH client here*?
-If you're reading this guide I'm having in consideration that you don't have extensive knowledge in setting up a Linux server. To learn this, you need to learn to work in a full fledged terminal, instead of having a program do the first part for you.
+#### ¿Por que no usar PuTTY, KiTTY, mRemoteNG, Bitvise, o *insertar cliente SSH aquí*?
+Si estas siguiendo esta guia, se tiene en consideración que no tienes conocimientos profundos en configurar un servidor de Linux. Para aprender, tendrás que aprender a trabajar en una terminal completa en vez de usar un programa que haga la primera parte por ti.
 
-### Step 2: Installing Git for Windows
-cmd sucks, Powershell sucks, Cygwin is stagnant. We'll install Git for Windows, which includes BASH emulation built in, to help familiarize yourself sooner with Linux's bash.
+### Paso 2: Instalando Git for Windows
+cmd apesta, Powershell apesta, Cygwin está estancado en la nada. Instalaremos Git for Windows, que incluye la emulación de BASH integrada, para ayudarte a familiarizarte antes con el bash de Linux.
 
-Get the 64-bit version of Git for Windows [here](https://git-scm.com/download/win). When installing, remember to check the "(NEW!) Add a Git Bash Profile to Windows Terminal" option in the _Select Components_ part. To make your life easier, in _Choosing the default editor used by Git_, scroll up the list and select "nano". No need to change anything else in the installation process.
+Descarga la versión 64 bits de Git for Windows [aquí](https://git-scm.com/download/win). Al instalar, recuerda marcar la opción "(NEW!) Add a Git Bash Profile to Windows Terminal" en la parte _Select Components_. Para facilitarte la vida, en _Choosing the default editor used by Git_, desplázate hacia arriba en la lista y selecciona "nano". No es necesario cambiar nada más en el proceso de instalación.
 
-Open Windows Terminal and you should see a _Git_ option when you click the arrow next to the new tab button. **You will be using this option starting from this point until the end of the tutorial.** You can also open settings (`CTRL + ,` or Downwards arrow > Settings) and select _Git_ as default profile. Remember to click **Save** at the end. Close your terminal and open another, you are set.
+Abre Windows Terminal y deberías ver una opción _Git_ cuando hagas clic en la flecha junto al botón de nueva pestaña. **Usarás esta opción a partir de este punto hasta el final del tutorial.** También puedes abrir la configuración (`CTRL + ,` o flecha hacia abajo > Configuración) y seleccionar _Git_ como perfil predeterminado. Recuerda hacer clic en **Guardar** al final. Cierra tu terminal y abre otra, ya estás listo.
 
-## Part 2: Getting a SSH key
-We're going to create a key that's going to replace password login. Open a new terminal window and paste the following command, replacing _your-key-filename_ with the name you actually want.
+## Parte 2: Obteniendo una clave SSH
+Vamos a crear una clave que reemplazará el inicio de sesión con contraseña. Abre una nueva ventana de terminal y pega el siguiente comando, reemplazando _your-key-filename_ con el nombre que realmente deseas.
 
-```console
+```
 ssh-keygen -t ed25519 -f ~/.ssh/your-key-filename
 ```
 
-It will ask you for a passphrase, you can either input your password here (hopefully you'll have a [good passphrase](https://xkcd.com/936/)) or leave it blank (not recommended) by pressing enter twice.
+Te pedirá una passphrase, puedes ingresar tu contraseña aquí (o mejor que tengas una [buena passphrase](https://xkcd.com/936/)) o dejarla en blanco (no recomendado) presionando ENTER dos veces.
 
-After you're done, if you check the .ssh folder (It's in your user folder, you might have to enable "View Hidden Folders") you'll see two files, one named like your key and one named the same, but with .pub at the end. The first one is your private key, do not **ever** share it with someone else, your VPS provider will never ask you for it! The second one is your public key, this one is the one that you will send over to your server.
-## Part 3: Choosing a server provider
-You'll hopefully choose a server provider that will provide
-- A IPv4 address for you (IPv4 NAT is fine, but you'll have to set up a domain for it)
-- Both SDD and HDD, with HDD space being at least 500GB (Pure HDD space is honestly fine, too)
-- At least 1GB of RAM
-- Will let you seed from public / private trackers (it's better to open a ticket and ask directly)
-I've been using Hostbrr's Hybrid Storage VPS for almost a year, and it works perfectly for my usage. You can check their various offerings [here](https://my.hostbrr.com/order/main/index/storage?a=NjEw) ([here, without affiliate code](https://my.hostbrr.com/order/main/index/storage)), or ask whether their custom offer is still available (I'm using this):
+Después de terminar, si revisas la carpeta .ssh (está en tu carpeta de usuario, es posible que debas habilitar "Ver carpetas ocultas"), verás dos archivos, uno con el nombre de tu clave y otro con el mismo nombre, pero con .pub al final. El primero es tu clave privada, **no la compartas nunca** con nadie más, tu proveedor de VPS nunca te la pedirá. El segundo es tu clave pública, esta es la que enviarás a tu servidor.
+
+## Parte 3: Eligiendo un proveedor de servidor
+Deberías elegir un proveedor de servidor que te proporcione:
+- Una dirección IPv4 para ti (IPv4 compartida sirve, pero tendrás que configurar un dominio para ello)
+- Tanto SSD como HDD, con espacio HDD de al menos 500GB (solo espacio HDD también está bien)
+- Al menos 1GB de RAM
+- Te permita sembrar desde trackers públicos / privados (es mejor abrir un ticket y preguntar directamente)
+He estado usando el VPS de almacenamiento híbrido de Hostbrr durante casi un año, y funciona perfectamente para mi uso. Puedes revisar sus diversas ofertas [aquí](https://my.hostbrr.com/order/main/index/storage?a=NjEw) ([aquí, sin código de afiliado](https://my.hostbrr.com/order/main/index/storage)), o preguntar si su oferta personalizada aún está disponible (estoy usando esta):
 
 ```
-2 vCore AMD EPYC 7502  
-30 GB NVMe  
-2 TB HDD  
-6 TB Bandwidth @ 1Gbps 
-IPv4+IPv6  
-Helsinki, Finland  
-$5.5/month
+2 vCore AMD EPYC 7502
+30 GB NVMe
+2 TB HDD
+6 TB de ancho de banda @ 1Gbps
+IPv4+IPv6
+Helsinki, Finlandia
+$5.5/mes
 ```
 
-As an alternative, ServaRica has their Polar Bear Storage offer ([link, no aff](https://clients.servarica.com/store/black-friday-2023/polar-bear-storage-offer)) with:
+Como alternativa, ServaRica tiene su oferta de almacenamiento Polar Bear ([enlace, sin af](https://clients.servarica.com/store/black-friday-2023/polar-bear-storage-offer)) con:
 ```
-2 cores Shared
+2 núcleos compartidos
 2GB RAM
 2TB HDD
-Unlimited bandwidth @ 250Mbps + 1Mbps daily increase, limit 1Gbps OR
-12TB Bandwidth @ 1Gbps
-IPv4 + IPv6 (on request)
-Montreal, Canada
-$5/month
+Ancho de banda ilimitado @ 250Mbps + 1Mbps de aumento diario, límite 1Gbps O
+12TB de ancho de banda @ 1Gbps
+IPv4 + IPv6 (a solicitud)
+Montreal, Canadá
+$5/mes
 ```
 
+## Parte 4: Configurando y asegurando tu servidor
+### Elegir un sistema operativo
+Personalmente uso Ubuntu 22.04 para todo. Te recomiendo que hagas lo mismo.
 
-## Part 4: Setting up and securing your server
-### Picking an OS
-I personally use Ubuntu 22.04 for everything. I recommend you to do so, too.
-### Making sure you can log in
-In a new terminal window, write the following, replacing *root* in case your hoster gives you a different user (like *ubuntu* or *debian* or *user*) and replacing *your_server_ip* with your server IP address. 
+### Asegurándote de poder iniciar sesión
+En una nueva ventana de terminal, escribe lo siguiente, reemplazando *root* en caso de que tu host te dé un usuario diferente (como *ubuntu* o *debian* o *user*) y reemplazando *your_server_ip* con la dirección IP de tu servidor.
 
 {{< alert "circle-info" >}}
-**Important** 22 is the default port for SSH. If you picked a server with IPv4 NAT (shared IP), this might be different, so make sure to change 22 to whatever was selected for you
+**Importante** 22 es el puerto predeterminado para SSH. Si elegiste un servidor con IPv4 NAT (IP compartida), esto podría ser diferente, así que asegúrate de cambiar 22 a lo que se haya seleccionado para ti.
 {{< /alert >}}
 
 ```console
 ssh root@your_server_ip -p 22
 ```
 
-If it tells you "The authenticity of host \[...\] can't be established", it's safe to write "yes". You should now be inside your server.
+Si te dice "La autenticidad del host \[...\] no se puede establecer", es seguro escribir "sí". Ahora deberías estar dentro de tu servidor.
 
-### Creating a new user and adding it to sudoers
-It's always a good idea to move from the default user to a new one created by yourself. In your terminal window, paste the following, changing "*ignacio*" to whatever user you want
+### Creando un nuevo usuario y agregándolo a sudoers
+Siempre es una buena idea moverse del usuario predeterminado a uno nuevo creado por ti. En tu ventana de terminal, pega lo siguiente, cambiando "*ignacio*" a cualquier usuario que desees.
 
 {{< alert "circle-info" >}}
-**Important** If you're on the user "root", you will get the error "*sudo: command not found*", remember to remove "sudo" on this step's commands
+**Importante** Si estás en el usuario "root", obtendrás el error "*sudo: comando no encontrado*", recuerda eliminar "sudo" en los comandos de este paso.
 {{< /alert >}}
 
 ```console
 sudo adduser ignacio
 ```
 
-Type your (secure) password twice, and fill out the info (or press enter multiple times to leave blank), then type "Y" to accept. Now, you need to add this new user to the *sudo* group, giving it admin permissions basically
+Escribe tu (segura) contraseña dos veces y completa la información (o presiona enter varias veces para dejarla en blanco), luego escribe "Y" para aceptar. Ahora, necesitas agregar este nuevo usuario al grupo *sudo*, dándole permisos de administrador básicamente.
 ```console
 sudo usermod -aG sudo ignacio
 ```
 
-To check whether it was successfully added, do the following command
+Para verificar si se agregó correctamente, ejecuta el siguiente comando:
 ```console
 sudo groups ignacio
 ```
 
-and you should see something similar to this: `ignacio : ignacio sudo`
+y deberías ver algo similar a esto: `ignacio : ignacio sudo`.
 
-### Making sure you can log in as your new user
-Send the command `exit` on your terminal (or close it and open it back again) and do the same SSH login command, but changing *root* to your newly created username
+### Asegurándote de poder iniciar sesión como tu nuevo usuario
+Envía el comando `exit` en tu terminal (o ciérralo y ábrelo de nuevo) y haz el mismo comando de inicio de sesión SSH, pero cambiando *root* por tu nombre de usuario recién creado.
 ```console
 ssh ignacio@your_server_ip -p 22
 ```
 
-Provide the password, and if successful, you should've logged back in, this time with your new user. Cool!
+Proporciona la contraseña y, si tienes éxito, deberías haber iniciado sesión nuevamente, esta vez con tu nuevo usuario. ¡Genial!
 
-### Sending your public key over to your server
-Logging with a password is old and prone to password dictionary attacks, we will send your public key over to your server, as the first step of disabling password logins altogether.
+### Enviando tu clave pública a tu servidor
+Iniciar sesión con una contraseña es antiguo y propenso a ataques de diccionario de contraseñas, enviaremos tu clave pública a tu servidor, como el primer paso para deshabilitar los inicios de sesión con contraseña por completo.
 
-In a new terminal window, do the following command. Remember to replace ignacio with your actual user!
+En una nueva ventana de terminal, ejecuta el siguiente comando. Recuerda reemplazar ignacio con tu usuario real.
 ```console
 ssh-copy-id -i ~/.ssh/your-key-filename.pub -p 22 ignacio@your_server_ip
 ```
 
-It will ask you for your password, provide it. If successful, you'll see the following
+Te pedirá tu contraseña, proporciónala. Si tienes éxito, verás lo siguiente:
 ```bash
 Number of key(s) added: 1
 
@@ -126,50 +127,50 @@ Now try logging into the machine, with:   "ssh 'ignacio@your_server_ip'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 
-Cool! Let's log in with your keyfile now
+¡Genial! Ahora iniciemos sesión con tu archivo de clave.
 ```console
 ssh ignacio@your_server_ip -p 22 -i ~/.ssh/your-key-filename
 ```
 
-Provide your keyfile passphrase / password (in case you used one) and you should've logged in the server without using your actual user's password.
+Proporciona la frase de paso / contraseña de tu archivo de clave (en caso de que hayas usado una) y deberías haber iniciado sesión en el servidor sin usar la contraseña real de tu usuario.
 
-### Enabling firewall with UFW
-Check UFW status with `sudo ufw status`, should reply with `Status: inactive`.
-Before enabling, let's make sure we don't lock ourselves from accessing, so we need to allow port 22 (or your SSH port) to be open.
+### Habilitando el firewall con UFW
+Verifica el estado de UFW con `sudo ufw status`, debería responder con `Status: inactive`.
+Antes de habilitar, asegúrate de no bloquearnos del acceso, por lo que necesitamos permitir que el puerto 22 (o tu puerto SSH) esté abierto.
 ```console
 sudo ufw allow 22
 ```
 
-The response to that should be `Rules updated` and `Rules updated (v6)`. Now we can enable the firewall with
+La respuesta a eso debería ser `Rules updated` y `Rules updated (v6)`. Ahora podemos habilitar el firewall con:
 ```console
 sudo ufw enable
 ```
 
-Accept the SSH disruption warning by typing "y" and pressing enter. Now, `sudo ufw status` should show allow rules to port 22.
+Acepta la advertencia de interrupción de SSH escribiendo "y" y presionando enter. Ahora, `sudo ufw status` debería mostrar reglas de permiso para el puerto 22.
 
-### Changing your SSH port to a random one
-Yes, we just allowed port 22 through our firewall, but changing the port to a less obvious one will reduce attempted logins by bots to nearly zero, and multiple failed attempts can make a less resource-heavy machines slower.
+### Cambiando tu puerto SSH a uno aleatorio
+Sí, acabamos de permitir el puerto 22 a través de nuestro firewall, pero cambiar el puerto a uno menos obvio reducirá los intentos de inicio de sesión por parte de bots a casi cero, y múltiples intentos fallidos pueden hacer que las máquinas con menos recursos sean más lentas.
 
 {{< alert "circle-info" >}}
-**Important** If you're on IPv4 NAT or you had a different SSH port to begin with, you can skip this section.
+**Importante** Si estás en IPv4 NAT o tenías un puerto SSH diferente desde el principio, puedes omitir esta sección.
 {{< /alert >}}
 
-Pick a random port, for this example I will be using port 566. Allow traffic through port 566 on UFW
+Elige un puerto aleatorio, para este ejemplo usaré el puerto 566. Permite el tráfico a través del puerto 566 en UFW:
 ```console
 sudo ufw allow 566
 ```
 
-Now change SSH port to your chosen one with this one-liner, remember to change 566 to your preferred port
+Ahora cambia el puerto SSH a tu puerto elegido con esta línea, recuerda cambiar 566 a tu puerto preferido:
 ```console
 sudo sed -i 's/#Port 22/Port 566/' /etc/ssh/sshd_config
 ```
 
-And restart the SSH service
+Y reinicia el servicio SSH:
 ```console
 sudo systemctl restart sshd
 ```
 
-In case you want to check, do `nano /etc/ssh/sshd_config` and it should look similar to this
+En caso de que quieras verificar, haz `nano /etc/ssh/sshd_config` y debería verse similar a esto:
 ```bash
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
@@ -190,38 +191,38 @@ Port 566
 (...)
 ```
 
-Open a new window and check if you can log in with your new port instead of the default one
+Abre una nueva ventana y verifica si puedes iniciar sesión con tu nuevo puerto en lugar del predeterminado:
 ```console
 ssh ignacio@your_server_ip -p 566 -i ~/.ssh/your-key-filename
 ```
 
-If you were successful, you can now deny the default SSH port with
+Si tuviste éxito, ahora puedes denegar el puerto SSH predeterminado con:
 ```console
 sudo ufw deny 22
 ```
 
-### Disabling password logins and root logins
-First copy and paste this command that will disable logging in as root
+### Deshabilitando los inicios de sesión con contraseña y los inicios de sesión como root
+Primero copia y pega este comando que deshabilitará el inicio de sesión como root:
 ```console
 sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 ```
 
-Then copy and paste this command that will disable logging in with a password, hence only allowing to log in with the correct keyfile
+Luego copia y pega este comando que deshabilitará el inicio de sesión con una contraseña, permitiendo así solo el inicio de sesión con el archivo de clave correcto:
 ```console
 sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 ```
 
-Once again, restart the SSH service
+Una vez más, reinicia el servicio SSH:
 ```console
 sudo systemctl restart sshd
 ```
 
-Now, root login is disabled and you will only be able to log in with your keyfile.
+Ahora, el inicio de sesión como root está deshabilitado y solo podrás iniciar sesión con tu archivo de clave.
 
-### Creating a SSH alias in your home device
-Your SSH login command is getting insanely long. We can set up a file named "config" inside ~/.ssh in your machine, adding all those extra commands to an alias that will make it way easier.
+### Creando un alias SSH en tu dispositivo local
+Tu comando de inicio de sesión SSH se está volviendo insanamente largo. Podemos configurar un archivo llamado "config" dentro de ~/.ssh en tu máquina, agregando todos esos comandos adicionales a un alias que lo hará mucho más fácil.
 
-Create a blank file on .ssh/ inside your user folder named "*config*", and paste the following, replacing "*seedbox*" with whatever alias you want, "*ignacio*" with your chosen user, *566* with the SSH port you chose and *"your-key-filename*" with the name of your private key.
+Crea un archivo en blanco en .ssh/ dentro de tu carpeta de usuario llamado "*config*", y pega lo siguiente, reemplazando "*seedbox*" con el alias que desees, "*ignacio*" con tu usuario elegido, *566* con el puerto SSH que elegiste y *"your-key-filename*" con el nombre de tu clave privada.
 ```console
 Host *
     ServerAliveInterval 40
@@ -233,40 +234,40 @@ Host seedbox
   IdentityFile ~/.ssh/your-key-filename
 ```
 
-Save it, close your terminal and open a new one. Instead of doing the whole SSH command with your user, IP, port and keyfile, simply do:
+Guárdalo, cierra tu terminal y abre una nueva. En lugar de hacer todo el comando SSH con tu usuario, IP, puerto y archivo de clave, simplemente haz:
 ```console
 ssh seedbox
 ```
 
-and you will be logged in.
+y habrás iniciado sesión.
 
-### Enabling fail2ban and setting it up to the extreme
-fail2ban is a handy program that will keep a list of IPs who failed to log in. You can customize it to a T, from how many tries to how many ban minutes / hours, etc. Since we already have everything set up to log in with a simple command, we'll set up fail2ban to
-- Ban anyone who tries to log in as root permanently
-- Ban anyone who doesn't provide a keyfile permanently
-- Ban anyone who provides the wrong keyfile for 24 hours
+### Habilitando fail2ban y configurándolo al extremo
+fail2ban es un programa útil que mantendrá una lista de IP que fallaron al iniciar sesión. Puedes personalizarlo a tu gusto, desde cuántos intentos hasta cuántos minutos / horas de prohibición, etc. Dado que ya tenemos todo configurado para iniciar sesión con un comando simple, configuraremos fail2ban para:
+- Prohibir permanentemente a cualquiera que intente iniciar sesión como root
+- Prohibir permanentemente a cualquiera que no proporcione un archivo de clave
+- Prohibir durante 24 horas a cualquiera que proporcione el archivo de clave incorrecto
 
-Update your system package list
+Actualiza la lista de paquetes de tu sistema:
 ```console
 sudo apt-get update
 ```
 
-Upgrade any outdated package. If you get a pink screen asking you which services you want to restart, just press enter.
+Actualiza cualquier paquete desactualizado. Si obtienes una pantalla rosa preguntándote qué servicios deseas reiniciar, simplemente presiona enter.
 ```console
 sudo apt-get dist-upgrade
 ```
 
- Install fail2ban
+Instala fail2ban:
 ```console
 sudo apt-get install fail2ban
 ```
 
-Create a new file with nano named jail.local
+Crea un nuevo archivo con nano llamado jail.local:
 ```console
 sudo nano /etc/fail2ban/jail.local
 ```
 
-Paste the following, remember to change 566 to your actual SSH port
+Pega lo siguiente, recuerda cambiar 566 a tu puerto SSH real:
 ```console
 [sshd]
 enabled = true
@@ -301,22 +302,22 @@ maxretry = 1
 bantime = 86400
 ```
 
-To save, press `CTRL + X`, press `Y` and then press enter.
-Create the following filter by doing `sudo nano /etc/fail2ban/filter.d/sshd-nokeyfile.conf` and paste the contents:
+Para guardar, presiona `CTRL + X`, presiona `Y` y luego presiona enter.
+Crea el siguiente filtro haciendo `sudo nano /etc/fail2ban/filter.d/sshd-nokeyfile.conf` y pega el contenido:
 ```console
 [Definition]
 failregex = ^.*Did not receive identification string from <HOST>$
 ignoreregex =
 ```
 
-Save, and create the last filter by doing `sudo nano /etc/fail2ban/filter.d/sshd-wrongkeyfile.conf` and paste the following:
+Guarda, y crea el último filtro haciendo `sudo nano /etc/fail2ban/filter.d/sshd-wrongkeyfile.conf` y pega lo siguiente:
 ```console
 [Definition]
 failregex = ^.*error: Authentication failed for .* from <HOST>$
 ignoreregex =
 ```
 
-Save, then start and enable fail2ban
+Guarda, luego inicia y habilita fail2ban:
 ```console
 sudo systemctl start fail2ban
 ```
@@ -325,28 +326,28 @@ sudo systemctl start fail2ban
 sudo systemctl enable fail2ban
 ```
 
-To check the status of all jails (to check an individual jail, put the name of the jail after "status")
+Para verificar el estado de todas las cárceles (para verificar una cárcel individual, pon el nombre de la cárcel después de "status"):
 ```console
 sudo fail2ban-client status
 ```
 
-To unban an IP
+Para desbloquear una IP:
 ```console
 sudo fail2ban-client unban <IP_ADDRESS>
 ```
 
-### Enabling auto-updates
-Install these packages
+### Habilitando actualizaciones automáticas
+Instala estos paquetes:
 ```console
 sudo apt-get install unattended-upgrades update-notifier-common
 ```
 
-Enable auto-updates (On the pink screen, make sure "Yes" is selected and press enter)
+Habilita las actualizaciones automáticas (En la pantalla rosa, asegúrate de que "Yes" esté seleccionado y presiona enter):
 ```console
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 ```
 
-Do `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades` and make sure it looks like this
+Haz `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades` y asegúrate de que se vea así:
 ```shell
 // Automatically upgrade packages from these (origin:archive) pairs
 //
@@ -368,13 +369,13 @@ Unattended-Upgrade::Allowed-Origins {
 };
 ```
 
-Also, check `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`, make sure it has these lines
+También, verifica `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`, asegúrate de que tenga estas líneas:
 ```shell
 APT::Periodic::Update-Package-Lists "1";
 APT::Periodic::Unattended-Upgrade "1";
 ```
 
-Enable and start the service
+Habilita y arranca el servicio:
 ```console
 sudo systemctl enable unattended-upgrades
 ```
@@ -383,25 +384,25 @@ sudo systemctl enable unattended-upgrades
 sudo systemctl start unattended-upgrades
 ```
 
-## Part 5: Holy fuck, can we install Swizzin yet?
-### Installing Swizzin
+## Parte 5: ¡Mierda, ¿podemos instalar Swizzin ya?
+### Instalando Swizzin
 
-Enable access to ports 80 (HTTP) and 443 (HTTPS)
+Habilita el acceso a los puertos 80 (HTTP) y 443 (HTTPS):
 ```console
 sudo ufw allow 80 && sudo ufw allow 443
 ```
 
-Switch to root
+Cambia a root:
 ```console
 sudo -i
 ```
 
-Run the Swizzin installation wizard
+Ejecuta el asistente de instalación de Swizzin:
 ```console
 bash <(curl -sL s5n.sh) && . ~/.bashrc
 ```
 
-Press "Yes" once it tells you to set up, then input your username. You will get a notice like this:
+Presiona "Yes" cuando te diga que configures, luego ingresa tu nombre de usuario. Recibirás una notificación como esta:
 ```shell
 INFO    The user ignacio already appears to be present on this machine; however, it does not appear to be configured as a swizzin user.
         The user will be added to swizzin.
@@ -409,37 +410,36 @@ INPUT   Continue setting up user?
 (Y/n) >
 ```
 
-Input "Y" and press enter to confirm. On password, re-type the password you already set up for your user.
+Ingresa "Y" y presiona enter para confirmar. En la contraseña, reescribe la contraseña que ya configuraste para tu usuario.
 
-On "Install software", select the following (Move with up/down arrows, select with spacebar)
+En "Instalar software", selecciona lo siguiente (Mueve con las flechas arriba/abajo, selecciona con la barra espaciadora):
 - nginx
-- qBittorrent (You can select deluge or rtorrent, though)
+- qBittorrent (También puedes seleccionar deluge o rtorrent, aunque)
 - panel
 
-Press the TAB button to select `<Ok>` and press ENTER.
-On the "Make some more choices" screen, scroll down and select `letsencrypt`. Anything else can be installed later. Again, TAB, select `<Ok>` and press ENTER.
+Presiona la tecla TAB para seleccionar `<Ok>` y presiona ENTER.
+En la pantalla "Make some more choices", desplázate hacia abajo y selecciona `letsencrypt`. Cualquier otra cosa puede instalarse más tarde. Nuevamente, TAB, selecciona `<Ok>` y presiona ENTER.
 
-Select your preferred qBittorrent version. I'll pick 4.6 because I use RSS feeds. TAB and continue. This will start installing all your selected applications. In lower RAM servers, there might be some parts where it looks like everything's frozen. **Do not worry**, just leave it and let it load until it finishes.
+Selecciona tu versión preferida de qBittorrent. Elegiré 4.6 porque uso feeds RSS. TAB y continúa. Esto comenzará a instalar todas tus aplicaciones seleccionadas. En servidores con menos RAM, puede haber algunas partes donde parece que todo está congelado. **No te preocupes**, solo déjalo y déjalo cargar hasta que termine.
 
-While it finishes, let's continue with the following step
+Mientras termina, continuemos con el siguiente paso.
 
-### Setting up your domain with Cloudflare
-We will use Cloudflare for this. Domains are cheap for the first year, but if you don't want to spend any money, [Afraid's FreeDNS](https://freedns.afraid.org/), [DuckDNS](https://www.duckdns.org/), [deSEC](https://desec.io/) or [eu.org](https://nic.eu.org/) are free alternatives to get a subdomain.
+### Configurando tu dominio con Cloudflare
+Usaremos Cloudflare para esto. Los dominios son baratos el primer año, pero si no quieres gastar dinero, [Afraid's FreeDNS](https://freedns.afraid.org/), [DuckDNS](https://www.duckdns.org/), [deSEC](https://desec.io/) o [eu.org](https://nic.eu.org/) son alternativas gratuitas para obtener un subdominio.
 
-First thing in Cloudflare: Select your domain, go to SSL/TLS > Overview > Configure and switch Custom SSL/TLS to "Full".
-Now, in DNS > Records > Add Record:
-- Select type `A`
-- In name, if you want to use a subdomain (tee.yourdomain.com), then write "tee". If you want to use the full domain just put `@`
-- IPV4 Address: Your seedbox IP
-- Proxy status: Leave as Proxied (Orange cloud)
+Primero en Cloudflare: Selecciona tu dominio, ve a SSL/TLS > Overview > Configure y cambia Custom SSL/TLS a "Full".
+Ahora, en DNS > Records > Add Record:
+- Selecciona tipo `A`
+- En el nombre, si deseas usar un subdominio (tee.yourdomain.com), entonces escribe "tee". Si deseas usar el dominio completo, solo pon `@`
+- IPV4 Address: Tu IP de seedbox
+- Proxy status: Déjalo como Proxied (Nube naranja)
 
-Then click "Save".
+Luego haz clic en "Save".
 
+Finalmente, en la esquina superior derecha, selecciona el ícono de perfil > Mi perfil, selecciona API Tokens (O [haz clic aquí](https://dash.cloudflare.com/profile/api-tokens)), desplázate hacia abajo y haz clic en "View" en Global API Key, cópialo; lo usarás ahora.
 
-Lastly, on the top right, select the profile icon > My Profile, select API Tokens (Or [click here](https://dash.cloudflare.com/profile/api-tokens)), scroll down and click "View" on Global API Key, copy it; you will use it now.
-
-### Setting up your domain in your server
-Go back to your terminal, you should see the following:
+### Configurando tu dominio en tu servidor
+Regresa a tu terminal, deberías ver lo siguiente:
 ```shell
 SUCCESS Panel installed
 INFO    Installing letsencrypt
@@ -447,9 +447,9 @@ DOCS    Further reference: https://swizzin.ltd/applications/letsencrypt
 INPUT   Enter domain name to secure with LE
 ```
 
-Enter your domain (or subdomain), when asked *"Do you want to apply this certificate to your swizzin default conf?"* type "y". Same with *"Is your DNS managed by CloudFlare?"* and *"Does the record for this subdomain already exist?"*. When asked for your CF API key, paste the global api key you copied early, then input your Cloudflare account email.
+Ingresa tu dominio (o subdominio), cuando se te pregunte *"Do you want to apply this certificate to your swizzin default conf?"* escribe "y". Lo mismo con *"Is your DNS managed by CloudFlare?"* y *"Does the record for this subdomain already exist?"*. Cuando se te pida tu clave API de CF, pega la clave api global que copiaste antes, luego ingresa tu correo electrónico de la cuenta de Cloudflare.
 
-Finally, you'll see this on your screen
+Finalmente, verás esto en tu pantalla:
 ```shell
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -487,43 +487,43 @@ INFO    Shell completions for the box command have been installed. They will be 
         ✔   Post-install commands finished
 ```
 
-In your browser, open your domain (or subdomain), log in and you should see Swizzin's panel. Remember to exit sudo user by simply typing `exit` on your terminal and pressing enter.
+En tu navegador, abre tu dominio (o subdominio), inicia sesión y deberías ver el panel de Swizzin. Recuerda salir del usuario sudo simplemente escribiendo `exit` en tu terminal y presionando enter.
 
-### Opening up your torrent port
-In your panel, select qBittorrent at the left sidebar (or go directly to `https://tee.yourdomain.com/qbittorrent`), log in with the same info as before. Click on the settings icon (gear icon), select tab "Connection" and copy the port listed on "Port used for incoming connections" (or replace it for your preferred one). In my case, my port is 2549.
+### Abriendo tu puerto de torrent
+En tu panel, selecciona qBittorrent en la barra lateral izquierda (o ve directamente a `https://tee.yourdomain.com/qbittorrent`), inicia sesión con la misma información que antes. Haz clic en el ícono de configuración (ícono de engranaje), selecciona la pestaña "Connection" y copia el puerto listado en "Port used for incoming connections" (o reemplázalo por tu preferido). En mi caso, mi puerto es 2549.
 
-Scroll down, click "Save" and on your terminal do
+Desplázate hacia abajo, haz clic en "Save" y en tu terminal haz:
 ```console
 sudo ufw allow 2549
 ```
 
-Check if your port is open with any port checker like [Dynu's Port Check](https://www.dynu.com/NetworkTools/PortCheck), wait until the "SUCCESS!" message appears. You're done! You now have a working seedbox available to you.
+Verifica si tu puerto está abierto con cualquier verificador de puertos como [Dynu's Port Check](https://www.dynu.com/NetworkTools/PortCheck), espera hasta que aparezca el mensaje "SUCCESS!". ¡Ya terminaste! Ahora tienes un seedbox funcional disponible para ti.
 
-### Optional settings for qBittorrent
+### Configuraciones opcionales para qBittorrent
 
-#### Disabling torrent limits
-Go to the settings icon > Connection and **deselect** the following:
+#### Deshabilitando límites de torrent
+Ve al ícono de configuración > Connection y **deselecciona** lo siguiente:
 - Global maximum number of connections
 - Maximum number of connections per torrent
 - Global maximum number of upload slots
 - Maximum number of upload slots per torrent
-#### Setting up your seedbox for private tracker usage only
-Go to the settings icon > Bittorrent and **deselect** the following:
+#### Configurando tu seedbox para uso solo de tracker privado
+Ve al ícono de configuración > Bittorrent y **deselecciona** lo siguiente:
 - Enable DHT (decentralised network) to find more peers
 - Enable Peer Exchange (PeX) to find more peers
 - Enable Local Peer Discovery to find more peers}
-### General maintenance (Good to do every few days / every week)
-#### Update your package lists
+### Mantenimiento general (Bueno hacer cada pocos días / cada semana)
+#### Actualizando tus listas de paquetes
 ```console
 sudo apt-get update
 ```
 
-#### Upgrade outdated packages
+#### Actualizando paquetes desactualizados
 ```console
 sudo apt-get dist-upgrade
 ```
 
-#### Update Swizzin to the latest release
+#### Actualizando Swizzin a la última versión
 ```console
 sudo box update
 ```
