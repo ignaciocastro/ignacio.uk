@@ -10,6 +10,8 @@ public_folder: "/img" # Folder where images will be accessed
 i18n:
   structure: multiple_files
   locales: [es, en]
+  default_locale: en
+  save_all_locales: true
 
 collections:
   - name: "post"
