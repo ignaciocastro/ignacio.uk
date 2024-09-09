@@ -19,7 +19,7 @@ collections:
     label: "Posts"
     folder: "content/posts"
     create: true
-    slug: "{{slug}}/index"
+    slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
