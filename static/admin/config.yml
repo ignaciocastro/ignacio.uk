@@ -2,8 +2,7 @@ backend:
   name: github
   repo: ignaciocastro/ignacio.uk
   branch: main # Branch to update (optional; defaults to master)
-  site_domain: https://ignacio.uk
-  base_url: https://ignacio.uk
+  base_url: https://sveltia-cms-auth.ignacio.workers.dev/
   auth_endpoint: /api/auth
 media_folder: assets/img
 public_folder: /img
@@ -13,7 +12,7 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{year}}-{{slug}}"
-    path: "{{slug}}/index.{{locale}}"
+    path: "{{year-slug}}{{slug}}/index.{{languages}}"
     media_folder: ''
     public_folder: ''
     fields:
@@ -25,7 +24,7 @@ collections:
       - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
     editor:
-      preview: false
+      preview: true
     i18n:
       structure: multiple_files
       locales: [en, es]
