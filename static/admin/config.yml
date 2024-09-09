@@ -7,27 +7,27 @@ backend:
 media_folder: "assets/img" # Folder where images will be uploaded
 public_folder: "/img" # Folder where images will be accessed
 
-i18n:
-  structure: multiple_files # Multiple language versions of the same content in the same folder
-  default_language: en
-  locales:
-    - { code: en, label: "English" }
-    - { code: es, label: "Español" }
-
 collections:
-  - name: "posts"
-    label: "Posts"
+  - name: "post"
+    label: "Post"
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
+    media_folder: ''
+    public_folder: ''
+    path: "{{slug}}/index.{{language}}.md"
+    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Language", name: "language", widget: "select", options: ["en", "es"], default: "en" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
     i18n:
-      structure: multiple_files # Using the same folder with language codes in filenames
-      locales:
-        - { code: en, label: "English" }
-        - { code: es, label: "Español" }
-    path: "{{slug}}/index.{{language}}.md" # Post file path based on language
+      structure: multiple_folders
+      locales: [en, es]
+      default_locale: en
+
+i18n:
+  structure: multiple_folders
+  locales: [en, es]
