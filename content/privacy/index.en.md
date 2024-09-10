@@ -12,6 +12,8 @@ showWordCount = false
 showComments = false
 showAuthor = false
 sharingLinks = false
+xml = false
+robots = 'noindex'
 +++
 **Privacy Policy**
 
