@@ -3,7 +3,10 @@ title = 'Hosteando un seedbox a Seedbox para principiantes'
 date = 2024-09-09T01:24:56-03:00
 draft = false
 showSummary = true
-summary = 'Configurando un seedbox privado, desde cero'
+summary = 'Configurando un seedbox privado desde cero, partiendo por Windows, luego Ubuntu Server y terminando con Swizzin'
+showBreadcrumbs = true
+keywords = "ubuntu server vps torrent seedbox guia swizzin hostbrr"
+
 +++
 
 Con la ola de gente queriendo configurar sus propios seedboxes sin ser molestados por sus compañias de internet por descargar torrents, entra a la mente mantener un servidor privado para descargar. Esta guia tocará los pasos básicos, empezando en como usar la terminal en Windows, escogiendo un proveedor de VPS e instalando (y configurando) Swizzin.

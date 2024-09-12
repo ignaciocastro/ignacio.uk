@@ -3,7 +3,9 @@ title = 'Hosting a Seedbox for Dummies'
 date = 2024-09-09T01:24:56-03:00
 draft = false
 showSummary = true
-summary = 'Setting up a private seedbox from the beggining'
+summary = 'Setting up a private seedbox from the beggining: Setting up Windows, then Ubuntu Server, and finally Swizzin'
+showBreadcrumbs = true
+keywords = "ubuntu server, vps, torrent, seedbox, guide, swizzin, private tracker, hostbrr"
 +++
 
 With the influx of people wanting to set up their own seedboxes without being bothered by their ISPs, there's a growing need for them to consider setting their servers for themselves. This guide will tackle the basics, starting on how to use the terminal on Windows, choosing a hoster and installing (and learning) Swizzin.
