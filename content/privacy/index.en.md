@@ -14,6 +14,7 @@ showAuthor = false
 sharingLinks = false
 xml = false
 robots = 'noindex'
+showBreadcrumbs = false
 +++
 **Privacy Policy**
 
