@@ -1,4 +1,5 @@
 +++
+title = 'Posts'
 showSummary = false
 showTableOfContents = false
 showTaxonomies = false
